@@ -17,11 +17,8 @@ const WeatherDashboard = () => {
     const [locationLoading, setLocationLoading] = useState(false);
     const [error, setError] = useState(null);
     const [initialLoad, setInitialLoad] = useState(true);
-    const [coordinates, setCoordinates] = useState(null);
+    const [, setCoordinates] = useState(null);
     const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-    const dailyData = {};
-
     const fetchWeatherData = async (cityName) => {
         setLoading(true);
         setError(null);
@@ -311,15 +308,6 @@ const WeatherDashboard = () => {
         const index = Math.round(degrees / 45) % 8;
         return directions[index];
     };
-
-    const getUVIndex = (uv) => {
-        if (uv <= 2) return {level: 'Low', color: 'text-green-400'};
-        if (uv <= 5) return {level: 'Moderate', color: 'text-yellow-400'};
-        if (uv <= 7) return {level: 'High', color: 'text-orange-400'};
-        if (uv <= 10) return {level: 'Very High', color: 'text-red-400'};
-        return {level: 'Extreme', color: 'text-purple-400'};
-    };
-
     const handleSearch = () => {
         if (searchInput.trim()) {
             fetchWeatherData(searchInput.trim());
